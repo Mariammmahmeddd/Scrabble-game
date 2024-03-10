@@ -1,0 +1,122 @@
+try:
+    the_mechanism_of_the_game = input(
+        "if you want to know how to play the game,press enter"
+    )
+    print()
+
+    def start_the_game():
+        print()
+        print("SCRABBLE GAME : this game played with a list of numbers between 1 & 9.")
+        print("it played with two players.")
+        print("each player takes turn picking a number ONLY from the list.")
+        print(
+            "to win the game,you have to pick more than three numbers that add up to 15."
+        )
+        print(
+            "however,if all the numbers are used and no player gets exactly 15,the game is a draw."
+        )
+
+    start_the_game()
+
+    The_start_key = input("press ENTER to play the game")
+    print()
+
+    The_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    player1 = 0
+    player2 = 0
+
+    def player1_input():
+        global player1
+        player1_num = int(input("player1,enter a number from the list"))
+        if 1 <= player1_num <= 9 and player1_num in The_list:
+            The_list.remove(player1_num)
+            player1 = player1 + player1_num
+            return player1
+        else:
+            print("this number is not included,please pick a number from the list")
+            print()
+            player1_num = int(input("player1,enter a number from the list"))
+            The_list.remove(player1_num)
+
+    def player2_input():
+        global player2
+        player2_num = int(input("player2,enter a number from the list"))
+        if 1 <= player2_num <= 9 and player2_num in The_list:
+            The_list.remove(player2_num)
+            player2 = player2 + player2_num
+            return player2
+
+        else:
+            print("this number is not included,please pick a number from the list")
+            print()
+            player2_num = int(input("player2,enter a number from the list"))
+            The_list.remove(player2_num)
+
+    def player_1_win():
+        if player1 == 15:
+            print()
+            print("The winner is player1 :)")
+
+    def player_2_win():
+        if player2 == 15:
+            print()
+            print("The winner is player2 :)")
+
+    def the_game():
+        count = 0
+
+        for player in range(0, 3):
+            print()
+            print("The list of numbers:", The_list)
+            print()
+            player1_input()
+            count += 1
+
+            if player1 == 15:
+                print()
+                print("The winner is player 1 :)")
+                break
+            player2_input()
+            if player2 == 15:
+              print()
+              print("The winner is player 2 :)")
+              break
+            if count == 3:
+                for i in range(0, 1):
+                    print()
+                    print("the list of numbers: ", The_list)
+                    print()
+                    player1_input()
+
+                    if player1 == 15:
+                        print("The winner is player 1 :)")
+                        break
+                    player2_input()
+                    player_2_win()
+
+    the_game()
+
+    if player1 != 15 and player2 != 15:
+        print("it is a Draw")
+
+    while True:
+        print()
+        restart_the_game = input( "if you want to play again press enter,and if you're finished playing type no"
+        )
+        print()
+
+        if restart_the_game.lower() == "no":
+          print()
+          print("Game over")
+
+          print()
+          print("hope you had a good time playing this game;)")
+          break
+        else:
+            The_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            player1 = 0
+            player2 = 0
+            the_game()
+
+except:
+    print("please try again")
